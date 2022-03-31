@@ -1,15 +1,15 @@
 package a17_제네릭;
 
 import a13_인터페이스2.model.User;
-<<<<<<< HEAD
 import a17_제네릭.User.CompanyUser;
 import a17_제네릭.User.PersonalUser;
 
 public class ControllerTest {
 	
-	public CMRespDto<? extends User> getProfile(String username) {
-		PersonalUser personalUser = new PersonalUser("geonho", "1234", "이건호", "g@gmail.com", "a20220001");
-		CompanyUser companyUser = new CompanyUser("apple", "1111", "애플", "apple@gmail.com", "220-81-47821");
+	public CMRespDto<? extends User> getProfile(String username){ // ? extends --> 제한
+		PersonalUser personalUser = new PersonalUser("aaaa", "1234", "이건호", "aaaa@gmail.com", "a20220001");
+		CompanyUser companyUser = new CompanyUser("apple", "1234", "애플", "apple@gmail.com", "220-81-47821");
+		
 		if(username.equals(personalUser.getUsername())) {
 			return new CMRespDto<PersonalUser>(1, "개인회원프로필", personalUser);
 		}else if(username.equals(companyUser.getUsername())) {
@@ -19,13 +19,15 @@ public class ControllerTest {
 		}
 	}
 	
-	public CMRespDto<?> login(String username, String password){
+	public CMRespDto<?> login(String username, String password){ 		// ? -----> 와일드카드
 		User userEntity = User.builder()
-								.username("geonho")
-								.password("1234")
-								.name("이건호")
-								.email("aaaa@gmail.com")
-								.build();
+								.username("aaaa")
+							  	.password("1234")
+							  	.name("이건호")
+						  		.email("aaaa@gmail.com") // -----> 안넣은 나머지는 자동 null처리 , 빌드는 순서 상관없음
+						  		.build();
+		
+//		User user = new User("aaaa", "1234", null, null);  -----> null값을 넣어줘야함, 순서를 지켜야함
 		
 		if(userEntity.getUsername().equals(username)) {
 			if(userEntity.getPassword().equals(password)) {
@@ -40,29 +42,8 @@ public class ControllerTest {
 
 	public static void main(String[] args) {
 		ControllerTest test = new ControllerTest();
-		System.out.println(test.login("geonho", "1234")); 
+		System.out.println(test.login("aaaa", "1234"));
 		System.out.println(test.getProfile("apple"));
-=======
-
-public class ControllerTest {
-	
-	public CMRespDto<?> login(String username, String password){
-		User userEntity = new User("geonho", "1234", "이건호", "aaaa@gamil.com");
-		if(userEntity.getUsername().equals(username)) {
-			if(userEntity.getPassword().equals(password)) {
-				System.out.println("로그인 성공");
-			}else {
-				System.out.println("로그인 실패(비밀번호가 틀렸습니다.");
-			}
-		}else {
-			System.out.println("로그인 실패(아이디가 틀렸습니다.)");
-		}
-		return null;
-	}
-
-	public static void main(String[] args) {
->>>>>>> 02201352d113ea97d366337115d599e7e532ce19
-
 	}
 
 }
