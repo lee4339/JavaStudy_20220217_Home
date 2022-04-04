@@ -28,3 +28,16 @@ List<E>
 -LinkedList<E>
 -Vector<E>
 -Stack<E>
+
+-Map 컬렉션 클래스
+ `Collection 인터페이스와는 다른 저장 방식
+ `Map 인터페이스를 구현한 모든 Map컬렉션 클래스들은 키와 값을 하나의 쌍으로
+  저장하는 방식(key-value방식)을 사용
+ `요소의 저장 순서를 유지하지 않는다.
+ `키는 중복을 허용하지 않지만, 값의 중복은 허용
+-HashMap<K, V>
+ `해시 알고리즘을 사용 --> 검색 속도가 매우 빠름
+ `add --> put, set --> replace
+ `containKey, containValue 
+-Hashtable<K, V>
+-TreeMap<K, V>
